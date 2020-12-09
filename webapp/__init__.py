@@ -1,7 +1,10 @@
 from flask import Flask, render_template
 
+from webapp.forms import LoginForm
+
 def create_app():
     app = Flask(__name__)
+    app.config.from_pyfile('config.py')
 
 
     @app.route('/')
@@ -10,5 +13,11 @@ def create_app():
         text = 'it is working'
         return render_template('index.html', page_title=page_title, text=text)
 
+    @app.route('/login')
+    def login():
+        title = 'Autorisation'
+        login_form = LoginForm()
+        return render_template('login.html', page_title=title, form=login_form)
+        
     return app
     
