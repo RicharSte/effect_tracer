@@ -13,15 +13,6 @@
   <body>
     <div class='container'>
         <h1>{{text}}</h1>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <div class="alert alert-warning" role="alert">
-                {% for message in messages %}
-                    {{ message }}<br>
-                {% endfor %}
-            </div>
-            {% endif %}
-        {% endwith %}
         <ol>
             <li>Сделать Регистрацию пользователей</li>
             <li>Сделать Todo ао гайду</li>
