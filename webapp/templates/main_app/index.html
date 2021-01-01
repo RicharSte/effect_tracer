@@ -1,33 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Todo App</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content%}
     <h1>Todo List</h1>
     <div>Add a new todo item: 
         <form action="{{  url_for('main_app.add') }}" method="POST">
-            <input type="text" name="todoitem">
-            <input type="submit" value="Add Item">
+            {{ form.hidden_tag()}}
+            <div class="form-group">
+                {{ form.task.label }}
+                {{ form.task()}}
+            </div>
+            {{ form.add_button() }}
         </form>
     </div>
     <div>
         <h2>Incomplete Items</h2>
-        <form action="{{  url_for('main_app.update') }}" method="POST">>
+        <form action="{{  url_for('main_app.update') }}" method="POST">
             <ul>
                 {% for todo in incomplete %}
                 <li style='front-size: 30pt'><input name=' {{ todo.id }}' type='checkbox'> {{todo.text}}</li>
                 {% endfor %}    
             </ul>
-            <input type='submit' value='Update the Items'>
+            {{ form.success_button() }}
         </form>
         <h2>Completed Items</h2>
         <ul>
             {% for todo in complete %}
-            <li style="font-size: 30pt">{{ todo.text }}</li>
+            <li style="font-size: 15pt">{{ todo.text }}</li>
             {% endfor %}
         </ul>
     </div>
-</body>
-</html>
+{% endblock%}
